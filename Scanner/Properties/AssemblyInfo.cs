@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // アセンブリに関する一般情報は以下の属性セットをとおして制御されます。
 // アセンブリに関連付けられている情報を変更するには、
 // これらの属性値を変更してください。
-[assembly: AssemblyTitle("MqoImporter")]
+[assembly: AssemblyTitle("Scanner")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("MqoImporter")]
-[assembly: AssemblyCopyright("Copyright © Yoshihiro Ito 2014")]
+[assembly: AssemblyCompany("MouseComputer PC")]
+[assembly: AssemblyProduct("Scanner")]
+[assembly: AssemblyCopyright("Copyright © Yoshihiro Ito 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // 次の GUID は、このプロジェクトが COM に公開される場合の、typelib の ID です
-[assembly: Guid("38716785-60bf-4b8d-a6dc-101ec522f3e5")]
+[assembly: Guid("6f89b99b-3e37-4d39-a314-da78e7d4be6c")]
 
 // アセンブリのバージョン情報は、以下の 4 つの値で構成されています:
 //
