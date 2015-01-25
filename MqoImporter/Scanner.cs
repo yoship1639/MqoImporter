@@ -29,6 +29,12 @@ namespace MqoImporter
         private int prevSeek = 0;
 
         /// <summary>
+        /// スキャンした文字列
+        /// </summary>
+        public string ScanString { get { return scanStr; } }
+        private string scanStr = null;
+
+        /// <summary>
         /// スキャン位置が既にテキストの終わりか
         /// </summary>
         public bool IsEnd { get { return Seek >= text.Length; } }
@@ -50,7 +56,11 @@ namespace MqoImporter
             // WhiteSpaceを飛ばす
             while (true)
             {
-                if (IsEnd) return null;
+                if (IsEnd)
+                {
+                    scanStr = null;
+                    return null;
+                } 
                 if (char.IsWhiteSpace(text[seek])) seek++;
                 else break;
             }
@@ -62,6 +72,7 @@ namespace MqoImporter
                 if (end == text.Length || char.IsWhiteSpace(text[end]))
                 {
                     string str = text.Substring(seek, end - seek);
+                    scanStr = str;
                     seek = end;
                     return str;
                 }

@@ -27,13 +27,24 @@ namespace MqoImporter
             Scanner scanner = new Scanner(text);
 
             // マジックナンバーの読み取り
-            if (scanner.NextString() != "Metasequoia") return Error(Error_MagicNumber, );
-            if (scanner.NextString() != "Document") return Error(Error_MagicNumber);
+            if (scanner.NextString() != "Metasequoia") return Error(Error_MagicNumber, scanner);
+            if (scanner.NextString() != "Document") return Error(Error_MagicNumber, scanner);
         }
 
-        private static MqoImportResult Error(string err, int seek)
+        /// <summary>
+        /// MQOモデルの読み取りに失敗したときの結果を返す
+        /// </summary>
+        /// <param name="err">エラーメッセージ</param>
+        /// <param name="scanner">スキャナ</param>
+        /// <returns>読み取り失敗の結果</returns>
+        private static MqoImportResult Error(string err, Scanner scanner)
         {
-            return new MqoImportResult() { ErrorMessage = err, Succeeded = false; };
+            // エラーが発生した場所を特定
+            int line = 0;
+            int c = 0;
+
+
+            return new MqoImportResult() { ErrorMessage = err, Succeeded = false, };
         }
     }
 
@@ -44,6 +55,9 @@ namespace MqoImporter
     {
         public bool Succeeded;
         public string ErrorMessage;
+        public int ErrorLine = -1;
+        public int ErrorCharactor = -1;
+        public string ErrorString;
         public MqoModel Model;
     }
 }
