@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 
-namespace System
+namespace System.Text
 {
     /// <summary>
     /// テキストからデータを読み取るクラス

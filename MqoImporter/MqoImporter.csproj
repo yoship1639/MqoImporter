@@ -43,16 +43,11 @@
     <Compile Include="MqoFace.cs" />
     <Compile Include="MqoMaterial.cs" />
     <Compile Include="MqoModel.cs" />
-    <Compile Include="MqoImporter.cs" />
+    <Compile Include="MqoModelImporter.cs" />
     <Compile Include="MqoObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scanner.cs" />
     <Compile Include="Vector.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Scanner\Scanner.csproj">
-      <Project>{761d306e-f5f9-4457-be4e-edd248c05088}</Project>
-      <Name>Scanner</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

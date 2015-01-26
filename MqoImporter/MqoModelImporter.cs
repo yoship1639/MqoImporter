@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
 
 namespace MqoImporter
@@ -9,7 +8,7 @@ namespace MqoImporter
     /// <summary>
     /// MQOモデルを読み取るクラス
     /// </summary>
-    public class MqoImporter
+    public class MqoModelImporter
     {
         private static readonly string Error_MagicNumber = "マジックナンバーが正しくありません.MQOファイルで無い可能性があります.";
         private static readonly string Error_NotFoundMaterial = "マテリアルチャンクが見つかりません.ファイルが破損している可能性があります.";
@@ -64,7 +63,6 @@ namespace MqoImporter
                 Scanner s = new Scanner(line);
                 // 名前の取得
                 string name = s.NextString();
-                //m.Name = encode(name.Substring(1, name.Length - 2), Encoding.GetEncoding("Shift-JIS"), Encoding.UTF8);
                 m.Name = name.Substring(1, name.Length - 2);
 
                 while (!s.IsEnd)
