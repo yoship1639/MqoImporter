@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 
-namespace Scanner
+namespace System
 {
     /// <summary>
     /// テキストからデータを読み取るクラス
@@ -71,6 +71,7 @@ namespace Scanner
             {
                 if (end == text.Length || char.IsWhiteSpace(text[end]))
                 {
+                    //if (end == text.Length) end--;
                     string str = text.Substring(seek, end - seek);
                     scanStr = str;
                     seek = end;
@@ -81,12 +82,55 @@ namespace Scanner
         }
 
         /// <summary>
+        /// 次の文字列を読み取る。
+        /// 指定の終端文字列までWhiteSpaceに関係なく読み込む
+        /// 終端文字列が見つからなかったらSeekは動かずnullを返す
+        /// </summary>
+        /// <param name="endStr">終端文字列</param>
+        /// <returns>文字列</returns>
+        public string NextString(string endStr)
+        {
+            prevSeek = seek;
+            // WhiteSpaceを飛ばす
+            while (true)
+            {
+                if (IsEnd)
+                {
+                    scanStr = null;
+                    return null;
+                }
+                if (char.IsWhiteSpace(text[seek])) seek++;
+                else break;
+            }
+
+            // 終端文字列のある位置を検索
+            int index = text.IndexOf(endStr, seek);
+            if (index == -1) return null;
+            int end = index + endStr.Length;
+            string str = text.Substring(seek, end - seek);
+            scanStr = str;
+            seek = end;
+            return str;
+        }
+
+        /// <summary>
         /// 次の整数値を読み取る
         /// </summary>
         /// <returns>次の整数値</returns>
         public int NextInt()
         {
-            return int.Parse(NextString());
+            string str = NextString();
+            return int.Parse(str);
+        }
+
+        /// <summary>
+        /// 次の符号なし整数値を読み取る
+        /// </summary>
+        /// <returns>次の符号なし整数値</returns>
+        public uint NextUInt()
+        {
+            string str = NextString();
+            return uint.Parse(str);
         }
 
         /// <summary>
@@ -105,6 +149,15 @@ namespace Scanner
         public double NextDouble()
         {
             return double.Parse(NextString().Replace(',', '.'), CultureInfo.InvariantCulture);
+        }
+
+        /// <summary>
+        /// 10進数値を読み取る
+        /// </summary>
+        /// <returns>10進数値</returns>
+        public decimal NextDecimal()
+        {
+            return decimal.Parse(NextString().Replace(',', '.'), CultureInfo.InvariantCulture);
         }
     }
 }

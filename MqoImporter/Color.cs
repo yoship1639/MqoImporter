@@ -5,9 +5,14 @@
     /// </summary>
     public struct Color3
     {
-        public float R = 0;
-        public float G = 0;
-        public float B = 0;
+        public float R;
+        public float G;
+        public float B;
+
+        public override string ToString()
+        {
+            return R + ", " + G + ", " + B;
+        }
     }
 
     /// <summary>
@@ -15,9 +20,14 @@
     /// </summary>
     public struct Color4
     {
-        public float R = 0;
-        public float G = 0;
-        public float B = 0;
-        public float A = 0;
+        public float R;
+        public float G;
+        public float B;
+        public float A;
+
+        public override string ToString()
+        {
+            return R + ", " + G + ", " + B + ", " + A;
+        }
     }
 }

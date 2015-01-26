@@ -24,7 +24,7 @@
         public int ColorType = -1;  // 辺の色タイプ [0] 環境設定での色を使用 [1] オブジェクト固有の色を使用
         public int Mirror = -1;     // 鏡面のタイプ [0] なし [1] 左右を分離 [2] 左右を接続
         public int MirrorAxis = -1; // 鏡面の適用軸 [1] X軸 [2] Y軸 [4] Z軸
-        public int MirrorDis = -1;  // 接続距離 0～
+        public float MirrorDis = -1;// 接続距離 0～
         public int Lathe = -1;      // 回転体のタイプ [0] なし [3] 両面
         public int LatheAxis = -1;  // 回転体の軸 [0] X軸 [1] Y軸 [2] Z軸
         public int LatheSeg = -1;   // 回転体の分割数 3～

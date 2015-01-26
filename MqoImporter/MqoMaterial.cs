@@ -6,7 +6,7 @@
     public class MqoMaterial
     {
         public string Name;                 // 名前
-        public int index = -1;              // 材質インデックス
+        public int Index = -1;              // 材質インデックス
 
         public int Shader = -1;             // シェーダ [0] Classic [1] Constant [2] Lambert [3] Phong [4] Blinn
         public int VCol = -1;               // 頂点カラー [0] なし [1] あり
@@ -24,7 +24,7 @@
         public string AlphaMapFullpath;     // 透明マップのフルパス
         public string BumpMapFullpath;      // バンプマップのフルパス
 
-        public int Mapping = -1;            // マッピング方式 [0] UV [1] 平面 [2] 円筒 [3] 球
+        public int ProjectType = -1;        // マッピング方式 [0] UV [1] 平面 [2] 円筒 [3] 球
         public Vector3 ProjectPos;          // 投影位置
         public Vector3 ProjectScale;        // 投影拡大率
         public Vector3 ProjectAngle;        // 投影角度 (-180 ~ 180)

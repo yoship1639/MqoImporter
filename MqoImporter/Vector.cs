@@ -5,8 +5,13 @@
     /// </summary>
     public struct Vector2
     {
-        public float X = 0;
-        public float Y = 0;
+        public float X;
+        public float Y;
+
+        public override string ToString()
+        {
+            return X + "," + Y;
+        }
     }
 
     /// <summary>
@@ -14,9 +19,14 @@
     /// </summary>
     public struct Vector3
     {
-        public float X = 0;
-        public float Y = 0;
-        public float Z = 0;
+        public float X;
+        public float Y;
+        public float Z;
+
+        public override string ToString()
+        {
+            return X + ", " + Y + ", " + Z;
+        }
     }
 
     /// <summary>
@@ -24,10 +34,14 @@
     /// </summary>
     public struct Vector4
     {
-        public float X = 0;
-        public float Y = 0;
-        public float Z = 0;
-        public float W = 0;
+        public float X;
+        public float Y;
+        public float Z;
+        public float W;
 
+        public override string ToString()
+        {
+            return X + ", " + Y + ", " + Z + ", " + W;
+        }
     }
 }
