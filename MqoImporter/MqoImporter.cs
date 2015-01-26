@@ -352,38 +352,54 @@ namespace MqoImporter
                                 while (!s.IsEnd)
                                 {
                                     string fs = s.NextString(")");
-                                    if (str == null) continue;
+                                    if (fs == null) continue;
 
-                                    if (fs.IndexOf("V") != -1)
+                                    if (fs.IndexOf("UV") != -1)  // UV値
+                                    {
+                                        Scanner uvs = new Scanner(fs.Substring(3, fs.Length - 4));
+                                        face.UVs = new Vector2[face.VertexNum];
+                                        for (int j = 0; j < face.VertexNum; j++)
+                                        {
+                                            face.UVs[j].X = uvs.NextFloat();
+                                            face.UVs[j].Y = uvs.NextFloat();
+                                        } 
+                                    }
+                                    else if (fs.IndexOf("M") != -1) // 材質インデックス
+                                    {
+                                        Scanner ms = new Scanner(fs.Substring(2, fs.Length - 3));
+                                        face.MaterialIndex = ms.NextInt();
+                                    }
+                                    else if (fs.IndexOf("V") != -1) // 頂点インデックス
                                     {
                                         string sub = fs.Substring(2, fs.Length - 3);
                                         Scanner vs = new Scanner(sub);
                                         face.Indices = new int[face.VertexNum];
                                         for (int j = 0; j < face.VertexNum; j++) face.Indices[j] = vs.NextInt();
                                     }
-                                    else if (fs.IndexOf("M") != -1)
+                                    else if (fs.IndexOf("COL") != -1) // 頂点カラー
                                     {
-                                        Scanner ms = new Scanner(fs.Substring(2, fs.Length - 3));
-                                        face.MaterialIndex = ms.NextInt();
-                                    }
-                                    else if (fs.IndexOf("UV") != -1)
-                                    {
-                                        Scanner uvs = new Scanner(fs.Substring(3, fs.Length - 4));
-                                        face.UVs =new Vector2[face.VertexNum];
+                                        string sub = fs.Substring(4, fs.Length - 5);
+                                        Scanner cols = new Scanner(sub);
+                                        face.VertexColors = new Color4[face.VertexNum];
                                         for (int j = 0; j < face.VertexNum; j++)
-                                        {
-                                            face.UVs[j].X = uvs.NextFloat();
-                                            face.UVs[j].Y = uvs.NextFloat();
-                                        } 
-                                        
+			                            {
+			                                uint u = cols.NextUInt();
+                                            face.VertexColors[j].R = ((u % 256) / 255.0f);
+                                            u >>= 8;
+                                            face.VertexColors[j].G = ((u % 256) / 255.0f);
+                                            u >>= 8;
+                                            face.VertexColors[j].B = ((u % 256) / 255.0f);
+                                            u >>= 8;
+                                            face.VertexColors[j].A = ((u % 256) / 255.0f);
+                                            u >>= 8;
+			                            }
                                     }
-                                    else if (fs.IndexOf("COL") != -1)
-                                    {
-                                        
-                                    }
-                                    else if (fs.IndexOf("CRS") != -1)
+                                    else if (fs.IndexOf("CRS") != -1) // Catmull-Clark/OpenSubdiv曲面用のエッジの折れ目
                                     { 
-                                        
+                                        string sub = fs.Substring(4, fs.Length - 5);
+                                        Scanner crss = new Scanner(sub);
+                                        face.CRS = new float[face.VertexNum];
+                                        for (int j = 0; j < face.VertexNum; j++) face.CRS[i] = crss.NextFloat();
                                     }
                                 }
                             }
@@ -410,6 +426,7 @@ namespace MqoImporter
                     Filepath = filepath.ToString(),
                     Version = version,
                     Materials = materials,
+                    Objects = objectList.ToArray(),
                 },
             };
             
